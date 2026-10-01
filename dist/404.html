@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#05070c" />
+    <meta name="robots" content="noindex" />
+
+    <title>404 — ShiPu WP</title>
+    <meta name="description" content="That ShiPu WP page does not exist." />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070c'/%3E%3Crect x='18' y='30' width='28' height='4' fill='%23facc15'/%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="brand" href="./index.html" aria-label="ShiPu WP home">
+            <span class="brand-mark" aria-hidden="true">SP</span>
+            <span>
+              <span class="brand-name">SHIPU WP</span>
+              <span class="brand-sub">ai assistant</span>
+            </span>
+          </a>
+          <nav class="site-nav" aria-label="Primary">
+            <a class="nav-link" href="./index.html#/" data-nav="/">Home</a>
+            <a class="nav-link" href="./index.html#/pricing" data-nav="/pricing">Pricing</a>
+            <a class="nav-link" href="./index.html#/dashboard" data-nav="/dashboard">Dashboard</a>
+            <a class="nav-link" href="./admin/index.html">Admin</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="container">
+          <div class="stack stack-lg">
+            <div class="wordmark" data-wordmark="SHIPU WP" data-size="lg" role="img" aria-label="SHIPU WP"></div>
+            <div class="empty-panel">
+              <span class="empty-mark" aria-hidden="true">[ 404 ]</span>
+              <h1 class="empty-title">Route not found</h1>
+              <p class="empty-text">
+                ShiPu WP is a single-page site, so every real page lives behind a
+                <span class="mono">#/</span> hash. Nothing is mounted at the address you requested.
+              </p>
+              <div class="empty-actions">
+                <a class="btn btn-primary" href="./index.html#/">Back home</a>
+                <a class="btn btn-ghost" href="./index.html#/pricing">Pricing</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="footer-meta">
+            <span>© ShiPu WP</span>
+            <span class="footer-status is-off">API NOT CONFIGURED</span>
+          </div>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="./index.html#/pricing">Pricing</a>
+            <a href="./index.html#/login">Login</a>
+            <a href="./admin/index.html">Admin</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { mountWordmarks } from "./assets/wordmark.js";
+      mountWordmarks(document);
+    </script>
+  </body>
+</html>

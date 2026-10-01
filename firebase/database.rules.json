@@ -1,0 +1,87 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "shipuwp": {
+      "users": {
+        "$uid": {
+          ".read": "auth != null && auth.uid == $uid",
+          "username": {
+            ".write": false
+          },
+          "usernameLower": {
+            ".write": false
+          },
+          "accountStatus": {
+            ".write": false
+          },
+          "createdAt": {
+            ".write": false
+          },
+          "plan": {
+            ".write": false
+          },
+          "subscription": {
+            ".write": false
+          },
+          "lastLoginAt": {
+            ".write": "auth != null && auth.uid == $uid && newData.isNumber() && newData.val() <= now + 60000"
+          },
+          "usage": {
+            ".write": "auth != null && auth.uid == $uid && newData.child('repliesUsed').isNumber() && newData.child('repliesUsed').val() >= 0 && newData.child('date').isString() && newData.child('repliesUsed').val() <= data.child('repliesUsed').val() + 25"
+          },
+          "devices": {
+            "$deviceId": {
+              ".write": "auth != null && auth.uid == $uid && ( !newData.child('lastSeenAt').exists() || newData.child('lastSeenAt').val() <= now + 60000 )"
+            }
+          },
+          "$other": {
+            ".write": false
+          }
+        }
+      },
+      "usernameIndex": {
+        "$usernameLower": {
+          ".read": "auth != null && root.child('shipuwp').child('admins').child(auth.uid).child('active').val() === true",
+          ".write": false
+        }
+      },
+      "admins": {
+        "$uid": {
+          ".read": "auth != null && (auth.uid == $uid || root.child('shipuwp').child('admins').child($uid).child('active').val() === true)",
+          ".write": false
+        }
+      },
+      "payments": {
+        "$paymentId": {
+          ".read": "auth != null && (data.child('uid').val() === auth.uid || root.child('shipuwp').child('admins').child(auth.uid).child('active').val() === true)",
+          ".write": false,
+          "status": {
+            ".write": false
+          },
+          "verifiedAt": {
+            ".write": false
+          },
+          "verifiedBy": {
+            ".write": false
+          },
+          "expiresAt": {
+            ".write": false
+          }
+        }
+      },
+      "purchaseSessions": {
+        ".read": false,
+        ".write": false
+      },
+      "pricing": {
+        ".read": true,
+        ".write": "auth != null && root.child('shipuwp').child('admins').child(auth.uid).child('active').val() === true"
+      },
+      "config": {
+        ".read": true,
+        ".write": "auth != null && root.child('shipuwp').child('admins').child(auth.uid).child('active').val() === true"
+      }
+    }
+  }
+}

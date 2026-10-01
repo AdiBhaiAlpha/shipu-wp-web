@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Redirecting — ShiPu WP</title>
+
+    <!--
+      Deep-link shim.
+
+      `server/purchase.py` documents the intended browser target as
+      `/purchase?session=<token>`, and `tool/config/settings.py:Config.purchase_url()`
+      builds exactly that URL. A static host has no `/purchase` route, so this
+      file turns it into the hash route the single-page site actually serves.
+
+      Point the Termux tool at `.../index.html#/purchase` if you would rather
+      skip the hop; both forms work, and app.js reads `?session=` from either
+      the hash query or the pre-hash query.
+    -->
+    <meta http-equiv="refresh" content="0; url=./index.html#/purchase" />
+    <link rel="canonical" href="./index.html#/purchase" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070c'/%3E%3Crect x='12' y='26' width='40' height='4' fill='%2322d3ee'/%3E%3Crect x='12' y='34' width='28' height='4' fill='%23c084fc'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <div class="shell">
+      <main class="main">
+        <div class="container">
+          <div class="stack stack-lg">
+            <div class="wordmark" data-wordmark="SHIPU" data-size="lg" role="img" aria-label="ShiPu"></div>
+            <div class="empty-panel">
+              <span class="empty-mark" aria-hidden="true">[ → ]</span>
+              <h1 class="empty-title">Opening your purchase session…</h1>
+              <p class="empty-text">
+                Taking you to the ShiPu WP checkout. If nothing happens, use the button below.
+              </p>
+              <div class="empty-actions">
+                <a class="btn btn-primary" id="continue" href="./index.html#/purchase">Continue to checkout</a>
+                <a class="btn btn-ghost" href="./index.html#/">Back home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import { mountWordmarks } from "./assets/wordmark.js";
+      mountWordmarks(document);
+
+      // Preserve ?session= (and anything else) across the hop.
+      const query = window.location.search;
+      const target = `./index.html#/purchase${query}`;
+      document.getElementById("continue").setAttribute("href", target);
+      window.location.replace(target);
+    </script>
+  </body>
+</html>

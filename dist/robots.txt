@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Nothing behind the login wall is useful to a crawler.
+Disallow: /admin
+Disallow: /purchase
+Disallow: /payment
+Disallow: /payment-pending
+Disallow: /payment-success
+Disallow: /payment-failed
