@@ -22,9 +22,9 @@ firebase/        Realtime Database rules + schema
 ### Backend (Render Web Service)
 
 1. Create a Web Service from this repo.
-2. Build command: `pip install -r requirements.txt`
-3. Start command: `gunicorn server.api:app`
-4. Set environment variables:
+2. Build: `pip install -r requirements.txt`
+3. Start: `gunicorn server.api:app`
+4. Environment variables (server-only, never committed):
    - `FIREBASE_ADMIN_CREDENTIALS` — service-account JSON or path
    - `PAYMENT_SECRET` — random long string
    - `WEBHOOK_SECRET` — random long string
@@ -32,9 +32,9 @@ firebase/        Realtime Database rules + schema
 ### Frontend (Render Static Site)
 
 1. Create a Static Site from this repo.
-2. Build command: *(none)*
-3. Publish directory: `dist`
-4. Set `BACKEND_URL` in `dist/assets/firebase-config.js` to the backend URL.
+2. Build: *(none)*
+3. Publish: `dist`
+4. Set `BACKEND_URL` in `dist/assets/firebase-config.js`.
 
 ## API
 
@@ -55,8 +55,8 @@ Every route needs `Authorization: Bearer <firebaseIdToken>`.
 ## Security
 
 - UID comes from a verified Firebase ID token, never the request body.
-- Admin actions require `shipuwp/admins/{uid}.active == true` checked server-side.
+- Admin actions require `shipuwp/admins/{uid}.active == true` server-side.
 - `plan`, `subscription`, `payments`, `admins`, `usernameIndex` are write-locked
   in Firebase rules — only the Admin SDK can write them.
-- All ShiPu data lives under `shipuwp/`; the shared project's root `users/` and
-  `bot/` nodes are never touched.
+- All ShiPu data lives under `shipuwp/`; the shared project's root nodes are
+  never touched.
